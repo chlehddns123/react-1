@@ -47,3 +47,157 @@ REACT-1수업
 3. 왜 effect가 필요한지 혹은 필요 없는지를 설명할 수 있어야 함
 #### React를 잘 쓴다는 것의 의미
 - UI를 컴포넌트 단위로 개발해서 레고를 조립하듯이 완성
+
+
+_________________________________________________________________________________________
+
+
+2026-03-25
+
+###Vite에서 SWC가 사라진 이유
+
+-SWC (Speedy Web Compiler)
+
+-Rust 기반으로 만들어진 고속 컴파일러
+-Babel을 대체하기 위함
+-TypeScript → JavaScript 변환(트랜스파일링)에 강점
+-Next.js 등 최신 프레임워크에서 사용
+-Oxc (Oxidation Compiler)
+
+-ESLint, Prettier, TypeScript 기능까지 통합하려는 차세대 도구
+-파싱 속도가 SWC보다 훨씬 빠름 (최대 3배 이상)
+-린팅/정적 분석 성능이 매우 뛰어남
+
+----------------------------------------------------------------------------
+
+React 컴포넌트
+
+-React에서 UI를 구성하는 기본 단위이며, 함수
+export default function Profile() {
+    return(
+        <>
+        </>
+    )
+}
+
+
+###컴포넌트 분리와 사용
+
+(예시)
+
+// 분리
+// Profile.jsx
+export default function Profile() {
+    return <img src="..."/>
+}
+
+
+// 사용
+import Profile from "./Profile"
+
+export default function App() {
+    return <Profile/>
+}
+
+
+-[컴포넌트 작성 규칙]
+
+-생성 과정 - 파일명과 컴포넌트 이름을 동일하게 맞추기 - export default 또는 export 사용 - 함수 내부에서 JSX 반환
+
+-[사용 방법]
+-import로 불러오기
+-<컴포넌트명/> 형태로 사용
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+-[컴포넌트 중첨 (Nesting)]
+
+-컴포넌트 안에서 다른 컴포넌트 사용하는 구조
+
+(예시)
+
+function Gallery() {
+    return (
+        <>
+            <Profile/>
+            <Profile/>
+        </>
+    )
+}
+
+-컴포넌트 안에 선언이 아니라 컴포넌트를 호출해서 사용하는 것
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+-[React 렌더링 구조]
+
+-컴포넌트 → App.jsx → main.jsx → index.html
+-대문자 = 컴포넌트, 소문자 = HTML
+
+
+-------------------------------------------------
+
+-[Export 방식 차이]
+
+Default Export
+export default function A() {}
+import A from "./A"
+-이름 변경 가능
+-파일당 1개만 가능
+
+
+-[Named Export]
+export function A() {}
+import { A } from "./A"
+-이름 반드시 동일
+-여러 개 export 가능
+
+
+-[다양한 import 방식]
+
+import { A } from "./file"
+import { A, B } from "./file"
+import { A as C } from "./file"
+import * as All from "./file"
+
+-[Named Export 추천 이유]
+-이름이 강제되어 협업 시 혼동 감서
+-리팩토링 시 안전
+-트리 쉐이킹(Tree Shaking)에 유리
+
+
+---------------------------------------------------------------------------------------------
+
+
+
+-[JSX 개념 정리]
+
+-JSX란?
+JavaScript 안에서 HTML처럼 UI를 작성할 수 있게 해 주는 문법
+
+-[JSX 규칙 3가지]
+1.반드시 하나의 부모 요소로 감싸기
+2.모든 태그는 닫기
+3.속성은 camelCase 사용 ex) <img className="icon" />
+
+
+
+-[JSX를 사용하는 이유]
+
+-기존 방식
+-HTML / CSS / JS 분리
+-React 방식
+-UI와 로직이 강하게 연결됨
+
+
+-[Key Takeaways]
+
+-1.React는 컴포넌트 기반 구조
+-2.JSX를 사용해 UI를 직관적으로 작성
+-3.Named Export가 협업에 유리
+-4.Vite는 점점 더 빠른 Rust 기반 도구(Oxc 등)로 발전 중
+
+
+
+
+
