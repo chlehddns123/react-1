@@ -72,13 +72,14 @@ ________________________________________________________________________________
 
 React 컴포넌트
 
--React에서 UI를 구성하는 기본 단위이며, 함수
+```jsx
 export default function Profile() {
     return(
         <>
         </>
     )
 }
+```
 
 
 ###컴포넌트 분리와 사용
@@ -86,6 +87,7 @@ export default function Profile() {
 (예시)
 
 // 분리
+```jsx
 // Profile.jsx
 export default function Profile() {
     return <img src="..."/>
@@ -93,11 +95,13 @@ export default function Profile() {
 
 
 // 사용
+// App.jsx
 import Profile from "./Profile"
 
 export default function App() {
     return <Profile/>
 }
+```
 
 
 -[컴포넌트 작성 규칙]
@@ -116,6 +120,7 @@ export default function App() {
 
 (예시)
 
+```jsx
 function Gallery() {
     return (
         <>
@@ -124,6 +129,7 @@ function Gallery() {
         </>
     )
 }
+```
 
 -컴포넌트 안에 선언이 아니라 컴포넌트를 호출해서 사용하는 것
 ---------------------------------------------------------------------------------------------------------------------------------------------------
@@ -139,26 +145,32 @@ function Gallery() {
 
 -[Export 방식 차이]
 
-Default Export
+```javascript
+// Default Export
 export default function A() {}
 import A from "./A"
+
 -이름 변경 가능
 -파일당 1개만 가능
 
 
 -[Named Export]
+// Named Export
 export function A() {}
 import { A } from "./A"
+```
 -이름 반드시 동일
 -여러 개 export 가능
 
 
 -[다양한 import 방식]
 
+```javascript
 import { A } from "./file"
 import { A, B } from "./file"
 import { A as C } from "./file"
 import * as All from "./file"
+```
 
 -[Named Export 추천 이유]
 -이름이 강제되어 협업 시 혼동 감서
