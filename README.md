@@ -413,3 +413,43 @@ App → PackingList → Items
 - 조건부 렌더링 적용 (if문)
 
 
+
+
+
+
+🛠 실습: 조건부 렌더링 최적화 및 가독성 개선
+✅ 체크 표시(이모지) 입력 팁
+Windows 환경에서는 Win + . (마침표) 단축키를 사용하여 이모지 창을 열 수 있습니다.
+
+1. Step7: 삼항 연산자를 이용한 조건부 렌더링
+if문을 사용하는 대신 삼항 연산자를 활용하여 중복되는 <li> 태그를 하나로 합치고 코드를 간결하게 만듭니다.
+
+JavaScript
+// Step7 : Items.jsx
+export default function Items({ name, isPacked }) {
+  return <li>{name} {isPacked ? ' ✅' : ""}</li>;
+}
+2. Step8: JSX 중첩 및 가독성 향상
+태그 안에 다른 태그(예: <del>)가 들어가는 등 구조가 복잡해질 때는 줄 바꿈과 소괄호를 사용하여 가독성을 높입니다.
+
+JavaScript
+// Step8 : Items.jsx
+export default function Items({ name, isPacked }) {
+  return (
+    <li>
+      {isPacked ? (
+        <del>
+          {name + " ✅"}
+        </del>
+      ) : (
+        name
+      )}
+    </li>
+  )
+}
+
+
+
+
+
+
