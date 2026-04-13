@@ -1469,6 +1469,7 @@ false일 경우 아무것도 렌더링되지 않음
 💡 개념 설명
 if문 + 변수(let)를 사용해서 조건에 따라 값을 변경
 마지막에 JSX에서 해당 변수를 출력
+
 💻 코드 예제
 export default function Item({ name, isPacked }) {
   let itemContent = name;
@@ -1517,7 +1518,7 @@ JSX는 최대한 깔끔하게 유지
 
 #💻 코드 예제
 
-```jsx
+
 
 export default function Items({ name, isPacked }) {
   let itemContent = name;
@@ -1604,7 +1605,6 @@ React에서 리스트 렌더링 시 필수 요소
 
 #💡 예시 (정적인 리스트)
 
-```jsx
 
 <ul>
   <li>스파이더맨: 피터 파커</li>
@@ -1623,7 +1623,7 @@ React에서 리스트 렌더링 시 필수 요소
 
 #👉 데이터를 JavaScript 배열로 관리
 
-```jsx
+
 
 const heroes = [
   { name: "스파이더맨", realName: "피터 파커" },
@@ -1652,7 +1652,6 @@ filter() → 조건 필터링
 #💻 코드 예제
 
 
-```jsx
 
 const heroes = [
   '스파이더맨: 피터 파커',
@@ -1664,7 +1663,7 @@ const heroes = [
 
 
 
-```jsx
+
 
 export default function MovieHeroes() {
   const listHeroes = heroes.map(hero => <li>{hero}</li>);
