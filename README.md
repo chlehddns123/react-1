@@ -637,58 +637,49 @@ export default function MovieHeroes() {
 
 __________________________________________________________________________________________________
 
-4월29일
+#4월29일
 
 📘 React 웹 개발: 컴포넌트 & 스타일링 정리
-📌 목차
-1. 컴포넌트 개발과 스타일 세팅
-2. 스타일링 방식
-3. 로컬 스타일링 (CSS Module)
-4. 버튼 컴포넌트 구현
-5. 이벤트 핸들러
-6. 이벤트 전파
-7. 컴포넌트 이벤트 처리
+
 1. 컴포넌트 개발과 스타일 세팅
 1-1. 컴포넌트 개발
-웹 개발은 컴포넌트 단위로 구성됨
-구조 설계 시 선택자 사용:
-id → 특정 요소 (거의 사용 안 함)
-class → 여러 요소에 공통 적용 (주로 사용)
 
-👉 중요
+웹 개발은 컴포넌트 단위로 구성됩니다.
 
-JavaScript에서 id 선택자는 효율성이 떨어져 잘 사용하지 않음
-유지보수 & 재사용성을 위해 class 중심 설계
-
-👉 실무 팁
-
-직접 만들기보다 외부 컴포넌트 활용 (생산성 ↑)
+🔹 선택자 사용
+id → 특정 요소 (거의 사용 ❌)
+class → 여러 요소에 적용 (권장 ✅)
+🔹 핵심
+id는 재사용이 어려움 → 유지보수 불리
+class 중심 설계가 효율적
+🔹 실무 팁
+직접 구현보다 외부 컴포넌트 활용 → 생산성 향상
 1-2. 스타일 세팅과 중괄호
-JSX에서 스타일은 {} 사용 → 객체 형태
+
+JSX에서는 스타일을 객체 형태로 작성합니다.
+
 <button style={{ backgroundColor: 'blue' }}>
-
-👉 하지만 문제점:
-
-{} 안에 또 {} → 가독성 ↓
+❗ 문제점
+{} 안에 {} 구조 → 가독성 저하
 유지보수 어려움
 
-❗ React에서는 권장하지 않음 (특히 큰 프로젝트)
+👉 React에서는 권장되지 않음
 
-1-3. 카멜 케이스 vs 파스칼 케이스
-방식	설명
+1-3. camelCase 규칙
+방식	예시
 camelCase	backgroundColor
-PascalCase	BackgroundColor
-
-👉 JSX 스타일에서는 camelCase 사용 필수
-
+kebab-case	background-color ❌
 style={{ backgroundColor: 'blue' }}
+
+👉 JSX에서는 camelCase 필수
+
 2. 스타일링 방식
-📌 전체 방식 정리
+📌 종류
 일반 CSS
 인라인 스타일
 CSS-in-JS
 CSS 프레임워크
-CSS Module (React 권장)
+CSS Module ⭐
 2-1. 일반 CSS
 .button {
   background: blue;
@@ -698,48 +689,44 @@ import './styles.css';
 
 <button className="button">Click</button>
 👍 장점
-쉽고 직관적
+간단하고 직관적
 👎 단점
-전역 충돌 발생 가능
+전역 충돌 발생
 유지보수 어려움
 2-2. 인라인 스타일
 <button style={{ backgroundColor: 'blue', color: 'white' }}>
-👍
-빠름
+👍 장점
+빠른 적용
 조건부 스타일 가능
-👎
+👎 단점
 재사용성 낮음
 유지보수 어려움
 2-3. CSS-in-JS
-
-대표 라이브러리:
-
+📌 대표 라이브러리
 styled-components
 emotion
 JSS
-👍
+👍 장점
 컴포넌트 단위 관리
 자동 클래스 생성 (충돌 방지)
 동적 스타일링 가능
-👎
+👎 단점
 번들 사이즈 증가
-학습 필요
+추가 학습 필요
 2-4. CSS 프레임워크
-
-대표:
-
+📌 대표
 Tailwind CSS
 Bootstrap
 Bulma
 <button className="bg-blue-500 text-white px-4 py-2">
-👍
+👍 장점
 빠른 개발
-디자인 통일
-👎
+디자인 일관성 유지
+👎 단점
 클래스 길어짐
 가독성 저하
 
-👉 최근 트렌드: Tailwind 많이 사용
+👉 최근 트렌드: Tailwind CSS
 
 3. 로컬 스타일링 (CSS Module)
 3-1. 개념
@@ -750,20 +737,18 @@ import styles from './Button.module.css';
 <button className={styles.button}>
 3-2. 특징
 파일명: Button.module.css
-전역이 아닌 로컬 스코프
+로컬 스코프 적용
 변수처럼 사용 가능
 
-👉 권장:
+👉 권장
 
-클래스 기반 스타일링
-태그 선택자 사용 최소화
+클래스 기반 스타일 사용
+태그 선택자 최소화
 3-3. 장점
 유지보수 쉬움
 재사용성 높음
-충돌 없음
-
-👉 폴더 구조 예시
-
+스타일 충돌 없음
+📁 폴더 구조 예시
 components/
  └── Button/
       ├── Button.jsx
@@ -781,15 +766,16 @@ export default function Button() {
 }
 <button className={styles.button}>Click</button>
 4-3. 스타일 관리
-글로벌 CSS → 초기 설정용
+글로벌 CSS → 초기 설정
 컴포넌트 스타일 → module 사용
 
-👉 혼동 방지:
+👉 module 방식 권장
 
-항상 module 기반 스타일 추천
 5. 이벤트 핸들러
 5-1. 개념
-사용자 행동(클릭 등)에 반응하는 함수
+
+사용자 행동에 반응하는 함수
+
 function handleClick() {
   alert("클릭됨!");
 }
@@ -798,55 +784,51 @@ function handleClick() {
 이벤트 발생 시 실행
 사용자 인터랙션 처리
 
-👉 활용 예:
+👉 활용
 
 로그인
 결제
 데이터 변경
 6. 이벤트 전파
 6-1. 개념
-이벤트가 부모 → 자식 / 자식 → 부모로 전달됨
+이벤트는 컴포넌트 간 전달됨
 
-👉 예:
+👉 예
 
-버튼 클릭 → 부모 컴포넌트까지 전달
-6-2. 중요 포인트
-이벤트 흐름 이해 필수
-필요 시 전파 제어 가능
+버튼 클릭 → 부모 컴포넌트로 전파
+6-2. 제어 방법
 event.stopPropagation();
 7. 컴포넌트 이벤트 처리
 7-1. 이벤트 설정
 <button onClick={handleClick}>
-
-👉 주의:
-
-() 붙이면 즉시 실행됨 ❌
-함수 이름만 전달해야 함 ⭕
+❗ 주의
+onClick={handleClick()} ❌
+onClick={handleClick}  ⭕
 7-2. 핸들러 정의
 function handleClick() {
   console.log("클릭");
 }
 
-👉 위치:
+👉 위치
 
 컴포넌트 내부 (권장)
 또는 외부 모듈
 7-3. 이벤트 전달
 <Button onClick={handleClick} />
 
-👉 핵심:
+👉 핵심
 
-함수 자체를 전달
+함수 자체 전달
 실행은 컴포넌트 내부에서 발생
 🚀 최종 정리
-✅ React 스타일링 추천 순서
-CSS Module ⭐ (가장 추천)
+✅ 스타일링 추천 순서
+CSS Module ⭐
 Tailwind CSS
 CSS-in-JS
 일반 CSS
 인라인 스타일 (최소 사용)
 ✅ 핵심 포인트
-컴포넌트 기반 개발 필수
+컴포넌트 기반 개발
 스타일은 로컬화
 이벤트는 함수로 전달
 유지보수 & 재사용성 최우선
