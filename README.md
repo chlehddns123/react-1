@@ -637,10 +637,10 @@ export default function MovieHeroes() {
 
 __________________________________________________________________________________________________
 
+
 📘 React 웹 개발: 컴포넌트 & 스타일링 정리
-
-📅 작성일: 2026-04-29
-
+> 📅 작성일: 2026-04-29  
+---
 📌 목차
 1. 컴포넌트 개발과 스타일 세팅
 2. 스타일링 방식
@@ -650,39 +650,35 @@ ________________________________________________________________________________
 6. 이벤트 전파
 7. 컴포넌트 이벤트 처리
 최종 정리
+---
 1. 컴포넌트 개발과 스타일 세팅
 1-1. 컴포넌트 개발
-
 웹 개발은 컴포넌트 단위로 구성됩니다.
-
-id → 특정 요소 (거의 사용 ❌)
-class → 여러 요소에 적용 (권장 ✅)
-
+`id` → 특정 요소 (거의 사용 ❌)
+`class` → 여러 요소에 적용 (권장 ✅)
 👉 핵심
-
-id는 재사용 어려움
-class 중심 설계가 효율적
-
+`id`는 재사용 어려움
+`class` 중심 설계가 효율적
 👉 실무 팁
-
 외부 컴포넌트 활용 → 생산성 ↑
+---
 1-2. 스타일 세팅과 중괄호
-
 JSX 스타일은 객체 형태로 작성합니다.
-
+```jsx
 <button style={{ backgroundColor: 'blue' }}>
-
+```
 ❗ 문제점
-
 중괄호 중첩 → 가독성 저하
 유지보수 어려움
-
 👉 실무에서는 거의 사용하지 않음
-
+---
 1-3. camelCase 규칙
+```jsx
 style={{ backgroundColor: 'blue' }}
+```
 camelCase 사용 필수
-background-color ❌
+`background-color` ❌
+---
 2. 스타일링 방식
 📌 종류
 일반 CSS
@@ -690,97 +686,97 @@ background-color ❌
 CSS-in-JS
 CSS 프레임워크
 CSS Module ⭐
+---
 2-1. 일반 CSS
+```css
 .button {
   background: blue;
   color: white;
 }
+```
+```jsx
 import './styles.css';
 
 <button className="button">Click</button>
-
+```
 ✔ 장점
-
 간단함
-
 ❌ 단점
-
 전역 충돌
+---
 2-2. 인라인 스타일
+```jsx
 <button style={{ backgroundColor: 'blue', color: 'white' }}>
-
+```
 ✔ 장점
-
 빠름
-
 ❌ 단점
-
 유지보수 어려움
+---
 2-3. CSS-in-JS
 styled-components
 emotion
 JSS
-
 ✔ 장점
-
 동적 스타일 가능
 충돌 방지
-
 ❌ 단점
-
 학습 필요
+---
 2-4. CSS 프레임워크
+```jsx
 <button className="bg-blue-500 text-white px-4 py-2">
+```
 Tailwind CSS
 Bootstrap
 Bulma
-
 👉 최근 트렌드: Tailwind
-
+---
 3. 로컬 스타일링 (CSS Module)
-3-1. 개념
+```jsx
 import styles from './Button.module.css';
 
 <button className={styles.button}>
+```
 컴포넌트 단위 스타일 관리
 클래스 자동 해싱 → 충돌 방지
-3-2. 특징
-파일명: Button.module.css
-로컬 스코프
-변수처럼 사용 가능
-3-3. 장점
-유지보수 쉬움
-재사용 가능
-충돌 없음
+---
 4. 버튼 컴포넌트 구현
-기본 코드
+```jsx
 export default function Button() {
   return <button>Click</button>;
 }
-스타일 적용
+```
+```css
 .button {
   background: blue;
   padding: 10px;
 }
+```
+```jsx
 <button className={styles.button}>Click</button>
+```
+---
 5. 이벤트 핸들러
+```jsx
 function handleClick() {
   alert("클릭됨!");
 }
 
 <button onClick={handleClick}>Click</button>
-사용자 이벤트 처리
-클릭, 입력 등 대응
+```
+---
 6. 이벤트 전파
-이벤트는 부모/자식으로 전달됨
+```jsx
 event.stopPropagation();
+```
+---
 7. 컴포넌트 이벤트 처리
-<button onClick={handleClick}>
-
-❗ 주의
-
-onClick={handleClick()} ❌
-onClick={handleClick}  ⭕
+```jsx
+onClick={handleClick}  // ⭕
+onClick={handleClick()} // ❌
+```
+---
 최종 정리
 ✅ 추천 순서
 CSS Module ⭐
@@ -788,13 +784,12 @@ Tailwind
 CSS-in-JS
 일반 CSS
 인라인 스타일
+---
 ✅ 핵심
 컴포넌트 기반 개발
 스타일은 로컬화
 이벤트는 함수로 전달
 유지보수 중요
-
-
 
 
 
